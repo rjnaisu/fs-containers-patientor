@@ -1,0 +1,39 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      NODE_ENV: development
+    volumes:
+      - ./frontend:/usr/src/app
+      - frontend_node_modules:/usr/src/app/node_modules
+    expose:
+      - "5173"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./backend:/usr/src/app
+      - backend_node_modules:/usr/src/app/node_modules
+    expose:
+      - "3001"
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      - frontend
+      - backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+
+volumes:
+  frontend_node_modules:
+  backend_node_modules:

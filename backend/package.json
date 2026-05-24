@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "rjnaisu",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "concurrently \"tsc --watch\" \"node --watch --experimental-transform-types src/index.ts\"",
+    "start": "node --experimental-transform-types src/index.ts",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "typescript": "^6.0.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/express": "^5.0.6",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.2.1",
+    "oxfmt": "^0.46.0",
+    "typescript-eslint": "^8.59.0"
+  }
+}
